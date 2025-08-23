@@ -1,0 +1,7 @@
+Activate environment - venv/Scripts/Activate
+Run the backend - python app.py
+
+
+ - set up routes models controllers utils  
+ - Set Up dataBase 
+ - Successfully Connected

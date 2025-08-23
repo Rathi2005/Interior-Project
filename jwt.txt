@@ -1,0 +1,16 @@
+JWT - JSON Web Token (Bearer token)
+    - it is a long string divided in 3 parts.
+
+=> Public Private CryptoGraphy : Security Mechanism
+    - 2 Keys are Generated : Public (Shareable) and Private (Do not Share) Key
+    - The Data encrypted by the Public key can only be decrypted by our Private key
+
+=> State Less and State full Mechanism :
+    - State less : the state is not stored in file or database
+        eg, JWT is a state less mechanism.
+
+    - State Full : state is stored in file or database    
+
+=> Authentication & Authorization :-
+    - Authenticating is giving some information which verifies your identity.
+    - Authorization is accessing resources (admin dash, user dash) 
