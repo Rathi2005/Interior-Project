@@ -23,14 +23,14 @@ const Gallery = () => {
       <Navbar />
 
       <section className="max-w-7xl mx-auto py-16 px-6">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 text-center mb-12">
+        <h1 className="text-4xl md:text-5xl font-serif text-gray-900 text-center mb-8">
           Our Portfolio
         </h1>
         <p className="text-center text-gray-600 max-w-2xl mx-auto mb-12">
           Explore our curated collection of luxurious interiors designed with elegance and sophistication.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
           {galleryItems.map((item, index) => (
             <GalleryCard key={index} image={item.image} title={item.title} />
           ))}

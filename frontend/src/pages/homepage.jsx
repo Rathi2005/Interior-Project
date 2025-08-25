@@ -3,7 +3,7 @@ import Navbar from "../components/navbar";
 import HeroSection from "../components/heroSection";
 import Gallery from "../components/gallery";
 import Trending from "../components/trending";
-import Newsletter from "../components/newsLetter";
+import Philosophy from "../components/philosophy";
 import Footer from "../components/footer";
 import Services from "../components/service";  // ✅ new import
 
@@ -14,8 +14,8 @@ const Home = () => {
       <HeroSection />
       <Services />   {/* ✅ new section added here */}
       <Gallery />
-      <Trending />
-      <Newsletter />
+      {/* <Trending /> */}
+      <Philosophy />
       <Footer />
     </div>
   );

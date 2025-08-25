@@ -1,6 +1,8 @@
 from flask import Blueprint, request, jsonify, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+from datetime import datetime, timezone
+
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -14,7 +16,7 @@ def register():
         return jsonify({"message": "User already exists"}), 400
 
     hashed_pw = generate_password_hash(password)
-    current_app.db.users.insert_one({"email": email, "password": hashed_pw, "username": username, "rawPassword": password})
+    current_app.db.users.insert_one({"email": email, "password": hashed_pw, "username": username, "rawPassword": password, "createdAt": datetime.now(timezone.utc)})
 
     return jsonify({"message": "User registered successfully"}), 201
 
@@ -29,7 +31,7 @@ def login():
         return jsonify({"message": "Invalid credentials"}), 401
 
     token = create_access_token(identity=email)
-    return jsonify({"message": "Login successful", "token": token}), 200
+    return jsonify({"message": "Login successful", "token": token, "email": email}), 200
 
 # Protected route
 @auth_bp.route("/profile", methods=["GET"])

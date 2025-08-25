@@ -24,6 +24,7 @@
         // Save token safely
         if (data.token) {
           localStorage.setItem("token", data.token);
+          localStorage.setItem("email", data.email);
           setTimeout(() => {
             navigate("/home");
           }, 50); // 50ms delay is enough

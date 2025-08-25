@@ -46,11 +46,15 @@ const HeroSection = () => {
               className="px-8 py-4 text-black font-semibold rounded-sm shadow-lg transform transition-all duration-300 hover:scale-105 group relative overflow-hidden"
               style={{ backgroundColor: '#b08a44' }}
               onMouseOut={(e) => e.target.style.backgroundColor = '#b08a44'}
+              onClick={() => window.location.href = '/gallery'}
             >
               <span className="relative z-10">Explore Portfolio</span>
             </button>
             
-            <button className="px-8 py-4 border-2 border-white text-white font-semibold rounded-sm hover:bg-gray-900/10 hover:border-gray-600 transform transition-all duration-300 hover:scale-105">
+            <button 
+            className="px-8 py-4 border-2 border-white text-white font-semibold rounded-sm hover:bg-gray-900/10 hover:border-gray-600 transform transition-all duration-300 hover:scale-105"
+            onClick={() => window.location.href = '/contact'}
+            >
               Book Consultation
             </button>
           </div>

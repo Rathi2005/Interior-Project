@@ -49,18 +49,18 @@ const Services = () => {
           alt="Background"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-white bg-opacity-60"></div>
+        <div className="absolute inset-0 bg-white bg-opacity-70"></div>
       </div>
 
       {/* Heading with fade-in animation */}
       <h2
-        className={`text-3xl md:text-4xl font-serif mb-8 max-w-6xl mx-auto leading-relaxed transition-all duration-1000 ${
+        className={`text-3xl md:text-4xl font-serif font-light mb-8 max-w-6xl mx-auto leading-relaxed transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
         A space is more than walls and furniture. It is a reflection of the
         lives within it and at
-        <span className="font-bold text-[#b08a44]"> Interior Maata Studio</span>
+        <span className="font-bold text-[#b08a44]"> InterioSpace</span>
         , that belief is woven into every space we create.
       </h2>
 
@@ -79,10 +79,10 @@ const Services = () => {
               background: "linear-gradient(to bottom, white 80%, #f9f5f0 100%)",
             }}
           >
-            <h3 className="text-lg font-semibold m-2 px-4 text-gray-800">
+            <h3 className="text-lg font-serif font-semibold m-2 mt-9 px-4 text-gray-800">
               {service.title}
             </h3>
-            <p className="text-lg text-[#b08a44] font-medium m-1">
+            <p className="text-md text-[#b08a44] font-medium m-1 mt-5">
               {service.subtitle}
             </p>
 

@@ -6,7 +6,6 @@ const Footer = () => {
       <p>© 2025 InterioSpace. All Rights Reserved.</p>
       <div className="flex justify-center mt-2 space-x-4">
         <a href="#">Instagram</a>
-        <a href="#">Pinterest</a>
         <a href="#">Contact</a>
       </div>
     </footer>

@@ -2,11 +2,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/homepage";
-import Login from "../pages/Login";
+import Login from "../pages/login";
 import Register from "../pages/register";
 import Gallery from "../pages/gallery";
 import Contact from "../pages/contact";
 import ProtectedRoute from "../components/ProtectedRoute";
+import Consultations from "../pages/consultations";
+import Profile from "../pages/profile";
 
 const AppRoutes = () => {
   return (
@@ -49,6 +51,24 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute>
               <Contact />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/consultations"
+          element={
+            <ProtectedRoute>
+              <Consultations />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
             </ProtectedRoute>
           }
         />
