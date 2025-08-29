@@ -5,17 +5,19 @@ import Gallery from "../components/gallery";
 import Trending from "../components/trending";
 import Philosophy from "../components/philosophy";
 import Footer from "../components/footer";
-import Services from "../components/service";  // ✅ new import
+import Services from "../components/service";
 
 const Home = () => {
   return (
-    <div className="bg-white text-gray-900">
+    <div className="bg-white text-gray-900 min-h-screen flex flex-col">
       <Navbar />
-      <HeroSection />
-      <Services />   {/* ✅ new section added here */}
-      <Gallery />
-      {/* <Trending /> */}
-      <Philosophy />
+      <main className="flex-1">
+        <HeroSection />
+        <Services />
+        <Gallery />
+        {/* <Trending /> */}
+        <Philosophy />
+      </main>
       <Footer />
     </div>
   );
