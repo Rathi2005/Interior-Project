@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000/api/auth" });
+const API_URL = import.meta.env.VITE_APP_API_URL;
+const API = axios.create({ baseURL: `${API_URL}/api/auth` });
 
 
 // Interceptor to add token to headers automatically
