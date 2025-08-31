@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8 bg-center bg-[url('../../loginBG.jpg')]">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8 bg-center bg-[url('/images/loginBG.jpg')]">
       <div className="flex flex-col lg:flex-row w-full max-w-4xl bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">
         {/* Left side - Login form */}
         <div className="w-full lg:w-1/2 p-6 sm:p-8 md:p-10">
@@ -130,7 +130,7 @@ const Login = () => {
         <div className="w-full lg:w-1/2 relative order-first lg:order-last">
           <div className="relative h-48 sm:h-64 md:h-80 lg:h-full">
             <img
-              src="..\..\login.jpg"
+              src="\images\login.jpg"
               alt="login visual"
               className="w-full h-full object-cover lg:absolute inset-0"
             />

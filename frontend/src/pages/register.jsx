@@ -35,7 +35,7 @@ const Register = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8"
   style={{ 
-    backgroundImage: "url('../../loginBG.jpg')",
+    backgroundImage: "url('/images/loginBG.jpg')",
     backgroundImagePosition: 'center',
   }}>
       <div className="flex flex-col lg:flex-row w-full max-w-4xl bg-white rounded-xl sm:rounded-2xl shadow-lg overflow-hidden">

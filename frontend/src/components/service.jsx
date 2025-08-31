@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import bgServices from "../../public/images/homepage/bg-servies.jpg";
+import bgServices from "/images/homepage/bg-servies.jpg";
 
 const Services = () => {
   const services = [
