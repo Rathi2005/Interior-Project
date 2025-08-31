@@ -141,7 +141,7 @@ const Register = () => {
         <div className="w-full lg:w-1/2 relative order-first lg:order-last">
           <div className="relative h-48 sm:h-64 md:h-80 lg:h-full">
             <img
-              src="..\..\login.jpg"
+              src="\images\login.jpg"
               alt="register visual"
               className="w-full h-full object-cover lg:absolute inset-0"
             />
