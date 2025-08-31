@@ -131,7 +131,7 @@ export default function Consultations() {
       <footer className="bg-white border-t border-gray-100 mt-20 py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} Interior Maata Studio. All rights reserved.
+            © {new Date().getFullYear()} Rathi Studio. All rights reserved.
           </p>
         </div>
       </footer>
