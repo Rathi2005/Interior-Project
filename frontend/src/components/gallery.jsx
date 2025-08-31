@@ -1,7 +1,7 @@
 import React from "react";
-import bedroom from "../public/images/bedroom.jpg";
-import kitchen from "../public/images/kitchen.jpg";
-import office from "../public/images/office.jpg";
+import bedroom from "../../public/images/bedroom.jpg";
+import kitchen from "../../public/images/kitchen.jpg";
+import office from "../../public/images/office.jpg";
 
 const Gallery = () => {
   const images = [kitchen, bedroom, office];
