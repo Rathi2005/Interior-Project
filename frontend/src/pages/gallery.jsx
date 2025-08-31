@@ -5,9 +5,9 @@ import Footer from "../components/footer";
 import GalleryCard from "../components/galleryCard";
 
 // Import your images
-import img1 from "../assets/gallery/img1.jpg";
-import img2 from "../assets/gallery/img2.jpg";
-import img3 from "../assets/gallery/img3.jpg";
+import img1 from "../public/images/gallery/img1.jpg";
+import img2 from "../public/images/gallery/img2.jpg";
+import img3 from "../public/images/gallery/img3.jpg";
 // Add more images as needed
 
 const galleryItems = [

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import livingRoom from "../assets/images/living-room1.jpg";
+import livingRoom from "../public/images/living-room1.jpg";
 import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
