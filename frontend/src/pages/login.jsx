@@ -141,7 +141,7 @@ const Login = () => {
                   Welcome Back
                 </h3>
                 <p className="text-sm sm:text-base opacity-90">
-                  To Rathi Studio
+                  To InterioSpace
                 </p>
               </div>
             </div>
