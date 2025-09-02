@@ -414,7 +414,7 @@ const Profile = () => {
       <footer className="bg-white border-t border-gray-100 mt-12 sm:mt-16 md:mt-20 py-6 sm:py-8">
         <div className="container mx-auto px-4 text-center">
           <p className="text-gray-500 text-xs sm:text-sm">
-            © {new Date().getFullYear()} Rathi Studio. All rights reserved.
+            © {new Date().getFullYear()} InterioSpace. All rights reserved.
           </p>
         </div>
       </footer>
