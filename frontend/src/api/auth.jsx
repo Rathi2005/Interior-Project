@@ -34,6 +34,16 @@ export const loginUser = async (data) => {
   return res.data;
 };
 
+// opt verification
+export const verifyOtp = async ({ email, otp }) => {
+  const res = await API.post("/verify-otp", { email, otp });
+  if (res.data.token) {
+    localStorage.setItem("token", res.data.token);
+  }
+  return res.data;
+};
+
+
 // Get Profile (with token)
 export const getProfile = () => API.get("/users/profile");
 
