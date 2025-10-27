@@ -17,6 +17,7 @@ otp_store = {}
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.json
+    print("Received data for registration:", data)
     username, email, password = data.get("username"), data.get("email"), data.get("password")
 
     if current_app.db.users.find_one({"email": email}):
