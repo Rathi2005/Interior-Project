@@ -12,7 +12,7 @@ from extensions import mail # from extensions.py
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://interior-project-1s8w.vercel.app"])
 
 from routes.auth_routes import auth_bp  
 from routes.contact_route import contact_bp 
