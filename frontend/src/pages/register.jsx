@@ -19,6 +19,7 @@ const Register = () => {
 
     try {
       const data = await registerUser({ username, email, password });
+      // print("Received data from frontend:", data) 
       setSuccess("Registration successful! Please log in.");
       
       // Optional: Auto-redirect to login after successful registration
