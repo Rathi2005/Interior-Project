@@ -3,8 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from datetime import datetime, timezone, timedelta
 import random
-from flask_mail import Message
-from extensions import mail
+from flask_mail import Message   # ❌ Not needed anymore
+from extensions import mail        # ❌ Not needed anymore
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -17,7 +17,6 @@ otp_store = {}
 @auth_bp.route("/register", methods=["POST"])
 def register():
     data = request.json
-    print("Received data for registration:", data)
     username, email, password = data.get("username"), data.get("email"), data.get("password")
 
     if current_app.db.users.find_one({"email": email}):
@@ -51,14 +50,16 @@ def login():
     expiry = datetime.now(timezone.utc) + timedelta(minutes=5)
     otp_store[email] = {"otp": otp, "expiry": expiry}
 
-    # Send OTP email
+    # ❌ COMMENTED (Render blocks SMTP)
     msg = Message("Your OTP Code", 
                   sender=current_app.config['MAIL_USERNAME'], 
                   recipients=[email])
     msg.body = f"Your OTP is {otp}. It will expire in 5 minutes."
     mail.send(msg)
 
-    return jsonify({"otpSent": True, "message": "OTP sent to your email"}), 200
+    print("OTP for testing:", otp)  # ✔ Useful for testing without email
+
+    return jsonify({"otpSent": True, "message": "OTP sent"}), 200
 
 
 # ---------------------------
@@ -100,13 +101,14 @@ def resend_otp():
     otp = str(random.randint(100000, 999999))
     expiry = datetime.now(timezone.utc) + timedelta(minutes=5)
 
-    # Save OTP
     otp_store[email] = {"otp": otp, "expiry": expiry}
 
-    # Send mail
+    # ❌ COMMENTED — SMTP blocked
     msg = Message("Your OTP Code", recipients=[email])
     msg.body = f"Your OTP is {otp}. It expires in 5 minutes."
     mail.send(msg)
+
+    print("Resent OTP for testing:", otp)
 
     return jsonify({"message": "OTP resent successfully"}), 200
 

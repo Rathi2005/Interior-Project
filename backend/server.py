@@ -38,7 +38,7 @@ app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")  # your email
 app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")  # app password, not real pwd
 app.config["MAIL_DEFAULT_SENDER"] = os.getenv("MAIL_USERNAME")
 mail.init_app(app)
-
+ 
 @app.route("/")
 def home():
     return "Welcome to the Flask Backend API!"
