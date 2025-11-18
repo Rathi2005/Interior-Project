@@ -3,12 +3,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from datetime import datetime, timezone, timedelta
 import random
-from flask_mail import Message   # ❌ Not needed anymore
-from extensions import mail        # ❌ Not needed anymore
+from flask_mail import Message
+from extensions import mail
 
 auth_bp = Blueprint("auth", __name__)
 
-# Temporary in-memory store for OTPs
+# Temporary OTP store
 otp_store = {}
 
 # ---------------------------
@@ -50,20 +50,18 @@ def login():
     expiry = datetime.now(timezone.utc) + timedelta(minutes=5)
     otp_store[email] = {"otp": otp, "expiry": expiry}
 
-    # ❌ COMMENTED (Render blocks SMTP)
-    msg = Message("Your OTP Code", 
-                  sender=current_app.config['MAIL_USERNAME'], 
-                  recipients=[email])
+    # Send OTP using SMTP
+    msg = Message(subject="Your OTP Code", recipients=[email])
     msg.body = f"Your OTP is {otp}. It will expire in 5 minutes."
     mail.send(msg)
 
-    print("OTP for testing:", otp)  # ✔ Useful for testing without email
+    print("OTP for testing:", otp)
 
     return jsonify({"otpSent": True, "message": "OTP sent"}), 200
 
 
 # ---------------------------
-# Verify OTP → Issue JWT
+# Verify OTP → JWT
 # ---------------------------
 @auth_bp.route("/verify-otp", methods=["POST"])
 def verify_otp():
@@ -82,13 +80,15 @@ def verify_otp():
     if str(record["otp"]) != otp:
         return jsonify({"message": "Invalid OTP"}), 400
 
-    # OTP valid → remove & issue JWT
     del otp_store[email]
     token = create_access_token(identity=email, expires_delta=timedelta(hours=1))
 
     return jsonify({"token": token, "email": email, "message": "Login successful"}), 200
 
 
+# ---------------------------
+# Resend OTP
+# ---------------------------
 @auth_bp.route("/resend-otp", methods=["POST"])
 def resend_otp():
     data = request.json
@@ -97,18 +97,15 @@ def resend_otp():
     if not email:
         return jsonify({"message": "Email required"}), 400
 
-    # Generate new OTP
-    otp = str(random.randint(100000, 999999))
+    otp = random.randint(100000, 999999)
     expiry = datetime.now(timezone.utc) + timedelta(minutes=5)
-
     otp_store[email] = {"otp": otp, "expiry": expiry}
 
-    # ❌ COMMENTED — SMTP blocked
-    msg = Message("Your OTP Code", recipients=[email])
+    msg = Message(subject="Your OTP Code", recipients=[email])
     msg.body = f"Your OTP is {otp}. It expires in 5 minutes."
     mail.send(msg)
 
-    print("Resent OTP for testing:", otp)
+    print("Resent OTP:", otp)
 
     return jsonify({"message": "OTP resent successfully"}), 200
 
