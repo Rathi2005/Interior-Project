@@ -6,39 +6,39 @@ from dotenv import load_dotenv
 from flask_jwt_extended import JWTManager
 from datetime import timedelta
 import os
-from extensions import mail # from extensions.py
+from extensions import mail
 
-
+# Load environment variables
 load_dotenv()
 
 app = Flask(__name__)
 CORS(app)
 
-from routes.auth_routes import auth_bp  
-from routes.contact_route import contact_bp 
+# Import routes AFTER app initialization
+from routes.auth_routes import auth_bp
+from routes.contact_route import contact_bp
 from routes.consultation_routes import consultations_bp
 from routes.profile_routes import profiles_bp
 
-
-# MongoDB client setup
+# MongoDB setup
 client = MongoClient(config.MONGO_URI)
 db = client[config.DB_NAME]
-app.db = db  # Make the database accessible in the app context
+app.db = db
 
-# JWT config
-app.config["JWT_SECRET_KEY"] = os.getenv("ACCESS_TOKEN_SECRET")  # change in production
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=15)  # 1 hour token expiry
+# JWT configuration
+app.config["JWT_SECRET_KEY"] = os.getenv("ACCESS_TOKEN_SECRET")
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=15)
 jwt = JWTManager(app)
 
-# Mail config
+# Mail configuration
 app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 587
 app.config["MAIL_USE_TLS"] = True
-app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")  # your email
-app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")  # app password, not real pwd
+app.config["MAIL_USERNAME"] = os.getenv("MAIL_USERNAME")
+app.config["MAIL_PASSWORD"] = os.getenv("MAIL_PASSWORD")
 app.config["MAIL_DEFAULT_SENDER"] = os.getenv("MAIL_USERNAME")
 mail.init_app(app)
- 
+
 @app.route("/")
 def home():
     return "Welcome to the Flask Backend API!"
@@ -51,4 +51,3 @@ app.register_blueprint(profiles_bp, url_prefix="/api")
 
 if __name__ == "__main__":
     app.run(debug=True)
- 
