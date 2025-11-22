@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/navbar";
+import { toast } from "react-hot-toast"; // ⭐ EDITED (toast)
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -42,9 +43,11 @@ const Profile = () => {
       const data = await response.json();
       setUserData(data);
       setLoading(false);
+      toast.success("Profile loaded successfully!"); // ⭐ EDITED (toast)
     } catch (err) {
       setError(err.message);
       setLoading(false);
+      toast.error(err.message); // ⭐ EDITED (toast)
     }
   };
 
@@ -69,9 +72,9 @@ const Profile = () => {
       setUserData(data);
       setIsEditOpen(false);
       await fetchUserProfile();
-      alert("Profile updated successfully!");
+      toast.success("Profile updated successfully!"); // ⭐ EDITED (toast)
     } catch (err) {
-      alert(err.message);
+      toast.error(err.message); // ⭐ EDITED (toast)
     }
   };
 
@@ -82,7 +85,7 @@ const Profile = () => {
   const openEditModal = () => {
     setFormData({
       username: userData?.username || "",
-      email: userData?.email || ""
+      email: userData?.email || "",
     });
     setIsEditOpen(true);
   };
@@ -92,7 +95,9 @@ const Profile = () => {
       <div className="min-h-screen bg-[#faf9f7] flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#b08a44] mx-auto"></div>
-          <p className="mt-4 text-gray-600 font-light">Loading your profile...</p>
+          <p className="mt-4 text-gray-600 font-light">
+            Loading your profile...
+          </p>
         </div>
       </div>
     );
@@ -137,7 +142,9 @@ const Profile = () => {
         <div className="max-w-5xl mx-auto">
           {/* Header with decorative elements */}
           <div className="text-center mb-6 sm:mb-8 md:mb-10">
-            <h1 className="text-2xl sm:text-3xl font-serif font-light text-gray-800 mb-2">Design Profile</h1>
+            <h1 className="text-2xl sm:text-3xl font-serif font-light text-gray-800 mb-2">
+              Design Profile
+            </h1>
             <div className="w-16 sm:w-20 h-0.5 bg-[#b08a44] mx-auto"></div>
           </div>
 
@@ -146,10 +153,13 @@ const Profile = () => {
             <div className="relative bg-gradient-to-r from-[#f9f5f0] to-[#f8f4ef] p-4 sm:p-6 md:p-8 border-b border-[#e5d6b8]">
               <div className="absolute top-0 right-0 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 opacity-10">
                 <svg viewBox="0 0 100 100" className="text-[#b08a44]">
-                  <path d="M50,0 L100,50 L50,100 L0,50 Z" fill="currentColor"></path>
+                  <path
+                    d="M50,0 L100,50 L50,100 L0,50 Z"
+                    fill="currentColor"
+                  ></path>
                 </svg>
               </div>
-              
+
               <div className="flex flex-col md:flex-row items-center relative z-10">
                 <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 bg-white p-1 rounded-full shadow-md mb-4 sm:mb-6 md:mb-0 md:mr-6 lg:mr-8">
                   <div className="w-full h-full rounded-full bg-gradient-to-r from-[#f9f5f0] to-[#f8f4ef] flex items-center justify-center border-2 border-[#e5d6b8]">
@@ -174,17 +184,20 @@ const Profile = () => {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="text-center md:text-left">
                   <h1 className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-gray-800 mb-1">
                     {userData?.username || "Design Enthusiast"}
                   </h1>
-                  <p className="text-[#b08a44] font-medium mb-1 sm:mb-2 text-sm sm:text-base">{userData?.email}</p>
+                  <p className="text-[#b08a44] font-medium mb-1 sm:mb-2 text-sm sm:text-base">
+                    {userData?.email}
+                  </p>
                   <p className="text-gray-500 text-xs sm:text-sm">
-                    Member since {new Date(userData?.createdAt).toLocaleDateString('en-US', { 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric' 
+                    Member since{" "}
+                    {new Date(userData?.createdAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
                     })}
                   </p>
                 </div>
@@ -212,20 +225,26 @@ const Profile = () => {
                     </span>
                     Personal Information
                   </h2>
-                  
+
                   <div className="space-y-3 sm:space-y-4">
                     <div className="pb-2 sm:pb-3 border-b border-[#e5d6b8]">
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Full Name</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                        Full Name
+                      </p>
                       <p className="font-medium text-gray-800 text-sm sm:text-base">
                         {userData?.username || "Not provided"}
                       </p>
                     </div>
-                    
+
                     <div className="pb-2 sm:pb-3 border-b border-[#e5d6b8]">
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Email Address</p>
-                      <p className="font-medium text-gray-800 text-sm sm:text-base">{userData?.email}</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                        Email Address
+                      </p>
+                      <p className="font-medium text-gray-800 text-sm sm:text-base">
+                        {userData?.email}
+                      </p>
                     </div>
-                    
+
                     {/* <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Phone Number</p>
                       <p className="font-medium text-gray-800 text-sm sm:text-base">
@@ -253,17 +272,21 @@ const Profile = () => {
                     </span>
                     Account Information
                   </h2>
-                  
+
                   <div className="space-y-3 sm:space-y-4">
                     <div className="pb-2 sm:pb-3 border-b border-[#e5d6b8]">
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">User ID</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                        User ID
+                      </p>
                       <p className="font-medium text-gray-800 text-xs sm:text-sm font-mono">
                         {userData?._id || "N/A"}
                       </p>
                     </div>
-                    
+
                     <div className="pb-2 sm:pb-3 border-b border-[#e5d6b8]">
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Account Status</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                        Account Status
+                      </p>
                       <p className="font-medium">
                         <span className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-[#e8f5e8] text-[#2e7d32]">
                           <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-[#2e7d32] rounded-full mr-1 sm:mr-2"></span>
@@ -271,15 +294,20 @@ const Profile = () => {
                         </span>
                       </p>
                     </div>
-                    
+
                     <div>
-                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Member Since</p>
+                      <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">
+                        Member Since
+                      </p>
                       <p className="font-medium text-gray-800 text-sm sm:text-base">
-                        {new Date(userData?.createdAt).toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'long', 
-                          day: 'numeric' 
-                        })}
+                        {new Date(userData?.createdAt).toLocaleDateString(
+                          "en-US",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          }
+                        )}
                       </p>
                     </div>
                   </div>
@@ -301,34 +329,42 @@ const Profile = () => {
                     </span>
                     Design Consultation Statistics
                   </h2>
-                  
+
                   <div className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-5 sm:grid-cols-2 md:grid-cols-4">
                     <div className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl shadow-sm text-center border border-[#e5d6b8]">
                       <p className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-[#b08a44] mb-1">
                         {userData.consultationStats.total || 0}
                       </p>
-                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">Total Consultations</p>
+                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">
+                        Total Consultations
+                      </p>
                     </div>
-                    
+
                     <div className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl shadow-sm text-center border border-[#e5d6b8]">
                       <p className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-[#ffb300] mb-1">
                         {userData.consultationStats.pending || 0}
                       </p>
-                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">Pending</p>
+                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">
+                        Pending
+                      </p>
                     </div>
-                    
+
                     <div className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl shadow-sm text-center border border-[#e5d6b8]">
                       <p className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-[#2e7d32] mb-1">
                         {userData.consultationStats.completed || 0}
                       </p>
-                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">Completed</p>
+                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">
+                        Completed
+                      </p>
                     </div>
-                    
+
                     <div className="bg-white p-3 sm:p-4 md:p-5 rounded-lg sm:rounded-xl shadow-sm text-center border border-[#e5d6b8]">
                       <p className="text-xl sm:text-2xl md:text-3xl font-serif font-light text-[#1565c0] mb-1">
                         {userData.consultationStats.inProgress || 0}
                       </p>
-                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">In Progress</p>
+                      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide">
+                        In Progress
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -336,7 +372,7 @@ const Profile = () => {
 
               {/* Action Buttons */}
               <div className="mt-6 sm:mt-8 md:mt-10 flex flex-wrap gap-3 sm:gap-4 justify-center">
-                <button 
+                <button
                   className="bg-white hover:bg-[#faf9f7] text-[#b08a44] px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 rounded-lg transition-all duration-300 flex items-center border border-[#b08a44] hover:shadow-md text-sm sm:text-base"
                   onClick={openEditModal}
                 >
@@ -369,7 +405,9 @@ const Profile = () => {
             </h2>
             <form onSubmit={handleUpdateProfile} className="space-y-5">
               <div>
-                <label className="block text-sm text-gray-600 mb-2 font-medium">Full Name</label>
+                <label className="block text-sm text-gray-600 mb-2 font-medium">
+                  Full Name
+                </label>
                 <input
                   type="text"
                   name="username"

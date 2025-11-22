@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ConsultationCard from "../components/consultationCard";
-import Navbar from "../components/navbar"; // Your existing Navbar component
+import Navbar from "../components/navbar";
+import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-
 
 export default function Consultations() {
   const [consultations, setConsultations] = useState([]);
@@ -32,9 +32,11 @@ export default function Consultations() {
 
         const data = await response.json();
         setConsultations(data);
+        toast.success("Consultations loaded successfully!"); // ⭐ EDITED
       } catch (err) {
         console.error("Error fetching consultations:", err);
         setError("Failed to load consultations. Please try again later.");
+        toast.error("Failed to load consultations."); // ⭐ EDITED
       } finally {
         setLoading(false);
       }
@@ -128,11 +130,11 @@ export default function Consultations() {
               Request Consultation
             </button> */}
             <Link
-                to="/contact"
-                className="px-6 py-2 border border-[#b08a44] text-[#b08a44] rounded-lg hover:bg-[#b08a44] hover:text-white transition-colors duration-200"
-              >
-                Request Consultation
-              </Link>
+              to="/contact"
+              className="px-6 py-2 border border-[#b08a44] text-[#b08a44] rounded-lg hover:bg-[#b08a44] hover:text-white transition-colors duration-200"
+            >
+              Request Consultation
+            </Link>
           </div>
         ) : (
           <div>

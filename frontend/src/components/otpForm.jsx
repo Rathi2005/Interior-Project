@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { verifyOtp } from "../api/auth";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const API_URL = import.meta.env.VITE_APP_API_URL;
 const API = axios.create({ baseURL: `${API_URL}/api/auth` });
-
 
 const OtpForm = ({ email }) => {
   const [otp, setOtp] = useState(Array(6).fill(""));
@@ -59,22 +59,25 @@ const OtpForm = ({ email }) => {
 
   const handleVerify = async (e) => {
     e.preventDefault();
+
+
     setLoading(true);
     setError("");
 
+    const otpString = otp.join("");
+
     try {
-      const otpString = otp.join("");
       const data = await verifyOtp({ email, otp: otpString });
       if (data.token) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("email", email);
+        toast.success("Welcome to the Dashboard");
         navigate("/home");
       } else {
         setError("Invalid OTP. Try again.");
       }
     } catch (err) {
+
       if (err.response && err.response.data && err.response.data.message) {
-        setError(err.response.data.message); // ✅ show "OTP expired" etc.
+        setError(err.response.data.message);
       } else {
         setError("OTP verification failed");
       }
@@ -84,18 +87,17 @@ const OtpForm = ({ email }) => {
   };
 
   const handleResendOtp = async () => {
-  setLoading(true);
-  setError("");
-  try {
-    const res = await API.post("/resend-otp", { email });
-    alert(res.data.message); // or show toast
-  } catch (err) {
-    setError(err.response?.data?.message || "Failed to resend OTP");
-  } finally {
-    setLoading(false);
-  }
-};
-
+    setLoading(true);
+    setError("");
+    try {
+      const res = await API.post("/resend-otp", { email });
+      alert(res.data.message); // or show toast
+    } catch (err) {
+      setError(err.response?.data?.message || "Failed to resend OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex items-center justify-center bg-gray-50 px-4 py-6">

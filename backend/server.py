@@ -49,5 +49,13 @@ app.register_blueprint(contact_bp, url_prefix="/api/contact")
 app.register_blueprint(consultations_bp, url_prefix="/api")
 app.register_blueprint(profiles_bp, url_prefix="/api")
 
+# if __name__ == "__main__":
+#     app.run(debug=True)
+
+
+# for railway deployment
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
+

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { loginUser } from "../api/auth";
 import { useNavigate, Link } from "react-router-dom";
 import OtpForm from "../components/otpForm"; // new
+import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ const Login = () => {
   const [success, setSuccess] = useState("");
   const [otpStage, setOtpStage] = useState(false); // new
   const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     // new
@@ -22,7 +24,8 @@ const Login = () => {
     try {
       const data = await loginUser({ email, password });
       if (data.otpSent) {
-        setSuccess("OTP sent to your email/phone!");
+        toast.success("OTP sent to your email/phone!");
+        // setSuccess("OTP sent to your email/phone!");
         setOtpStage(true); // show OTP form
       } else {
         setError("Unexpected response from server");

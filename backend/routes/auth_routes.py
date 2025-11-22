@@ -66,25 +66,49 @@ def login():
 @auth_bp.route("/verify-otp", methods=["POST"])
 def verify_otp():
     data = request.json
-    email, otp = data.get("email"), str(data.get("otp"))
+
+    print("\n--------------------------")
+    print("🔵 VERIFY OTP HIT")
+    print("📥 REQUEST DATA:", data)
+    print("📦 OTP STORE:", otp_store)
+    print("--------------------------")
+
+    email = data.get("email")
+    otp = str(data.get("otp"))
+
+    print("📌 EMAIL RECEIVED:", email)
+    print("📌 OTP RECEIVED:", otp)
 
     if email not in otp_store:
+        print("❌ OTP NOT FOUND FOR EMAIL:", email)
         return jsonify({"message": "OTP not found"}), 400
 
     record = otp_store[email]
+    print("📦 STORED RECORD:", record)
 
     if datetime.now(timezone.utc) > record["expiry"]:
+        print("❌ OTP EXPIRED")
         del otp_store[email]
         return jsonify({"message": "OTP expired"}), 400
 
     if str(record["otp"]) != otp:
+        print("❌ INVALID OTP. EXPECTED:", record["otp"])
         return jsonify({"message": "Invalid OTP"}), 400
 
+    print("🟢 OTP MATCHED → CREATING TOKEN")
+
     del otp_store[email]
+
     token = create_access_token(identity=email, expires_delta=timedelta(hours=1))
 
-    return jsonify({"token": token, "email": email, "message": "Login successful"}), 200
+    print("🟢 TOKEN GENERATED:", token)
+    print("--------------------------\n")
 
+    return jsonify({
+        "token": token,
+        "email": email,
+        "message": "Login successful"
+    }), 200
 
 # ---------------------------
 # Resend OTP
