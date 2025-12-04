@@ -102,7 +102,7 @@ const Navbar = () => {
       </ul>
 
       {/* Right: Profile Section (hidden on mobile, visible on desktop) */}
-      <div className="hidden md:flex items-center gap-3 relative" ref={dropdownRef}>
+      {/*<div className="hidden md:flex items-center gap-3 relative" ref={dropdownRef}>
         <p className="text-gray-700 text-sm">
           {displayEmail}
         </p>
@@ -128,7 +128,7 @@ const Navbar = () => {
 
         {isDropdownOpen && (
           <div className="absolute right-0 top-12 mt-2 w-56 py-2 bg-white rounded-md shadow-lg border border-gray-100 z-50">
-            {/* My Profile */}
+          
             <button
               onClick={handleProfileClick}
               className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
@@ -149,7 +149,7 @@ const Navbar = () => {
               My Profile
             </button>
 
-            {/* My Consultations */}
+           
             <button
               onClick={handleConsults}
               className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-100 transition"
@@ -172,7 +172,7 @@ const Navbar = () => {
 
             <hr className="my-1" />
 
-            {/* Logout */}
+       
             <button
               onClick={handleLogout}
               className="flex items-center w-full px-4 py-2 text-red-600 hover:bg-gray-100 transition"
@@ -194,13 +194,12 @@ const Navbar = () => {
             </button>
           </div>
         )}
-      </div>
+      </div>*/}
 
       {/* Mobile menu (visible on mobile) */}
-      {isMobileMenuOpen && (
+      {/*{isMobileMenuOpen && (
         <div ref={mobileMenuRef} className="fixed inset-0 bg-white z-40 md:hidden pt-20 px-6">
           <div className="flex flex-col space-y-6">
-            {/* Navigation links */}
             <Link
               to="/"
               className="text-lg font-medium text-gray-800 py-2 border-b border-gray-100"
@@ -223,7 +222,6 @@ const Navbar = () => {
               Contact
             </Link>
             
-            {/* User section */}
             <div className="pt-4 border-t border-gray-200">
               <p className="text-gray-600 mb-4">Logged in as: {displayEmail}</p>
               
@@ -289,7 +287,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      )}
+      )}*/}
+      
     </nav>
   );
 };

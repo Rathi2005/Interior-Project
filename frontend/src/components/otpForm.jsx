@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { verifyOtp } from "../api/auth";
+import { verifyOtp } from "../api/auth_email";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 const API_URL = import.meta.env.VITE_APP_API_URL;
