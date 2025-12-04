@@ -46,6 +46,7 @@ def login():
         return jsonify({"message": "Invalid credentials"}), 401
 
     # Generate OTP
+    '''
     otp = random.randint(100000, 999999)
     expiry = datetime.now(timezone.utc) + timedelta(minutes=5)
     otp_store[email] = {"otp": otp, "expiry": expiry}
@@ -58,8 +59,21 @@ def login():
     print("OTP for testing:", otp)
 
     return jsonify({"otpSent": True, "message": "OTP sent"}), 200
+    '''
+
+    token = create_access_token(identity=email, expires_delta=timedelta(hours=1))
+
+    print("🟢 TOKEN GENERATED:", token)
+    print("--------------------------\n")
+
+    return jsonify({
+        "token": token,
+        "email": email,
+        "message": "Login successful"
+    }), 200
 
 
+'''
 # ---------------------------
 # Verify OTP → JWT
 # ---------------------------
@@ -132,7 +146,7 @@ def resend_otp():
     print("Resent OTP:", otp)
 
     return jsonify({"message": "OTP resent successfully"}), 200
-
+'''
 
 # ---------------------------
 # Protected route
