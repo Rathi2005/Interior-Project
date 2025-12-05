@@ -1,6 +1,6 @@
   import { Routes, Route } from "react-router-dom";
   import { Toaster } from "react-hot-toast";
-  import Homepage from "./pages/Homepage.jsx";
+  import Homepage from "./pages/Homepage_temp.jsx";
 
   function App() {
     return (
