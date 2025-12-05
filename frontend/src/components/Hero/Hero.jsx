@@ -16,7 +16,7 @@ const Hero = ({ MenuIcon, CloseIcon, ArrowRight, menuOpen, setMenuOpen, videoLoa
           onLoadedData={() => setVideoLoaded(true)}
           preload="auto"
         >
-          <source src="istockphoto-508499774-640_adpp_is.mp4" type="video/mp4" />
+          <source src="/istockphoto-508499774-640_adpp_is.mp4" type="video/mp4" />
 
           {/* Fallback */}
           <img
