@@ -33,7 +33,7 @@ const Hero = ({ MenuIcon, CloseIcon, ArrowRight, menuOpen, setMenuOpen, videoLoa
           <div className="text-2xl font-light tracking-widest text-white">DESIGN STUDIO</div>
 
           <div className="hidden md:flex space-x-10">
-            <a className="text-white/90 hover:text-white">Portfolio</a>
+            <a className="text-white/90 hover:text-white">Portfolio</a> 
             <a className="text-white/90 hover:text-white">Services</a>
             <a className="text-white/90 hover:text-white">About</a>
             <a className="text-white/90 hover:text-white">Contact</a>
@@ -54,7 +54,7 @@ const Hero = ({ MenuIcon, CloseIcon, ArrowRight, menuOpen, setMenuOpen, videoLoa
           </h1>
 
           <p className="text-white/90 text-xl md:text-2xl font-light mb-12 max-w-3xl mx-auto leading-relaxed">
-            Crafting timeless interiors that blend innovation with elegance.
+            Crafting timeless interiors that blend innovation with elegance
           </p>
 
           <button className="px-10 py-4 bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 transition-all duration-500 font-light tracking-wider text-sm uppercase group">
