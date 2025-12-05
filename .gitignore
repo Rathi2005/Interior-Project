@@ -18,6 +18,7 @@ frontend/.env
 
 # Editor directories and files
 .vscode/*
+backup
 !.vscode/extensions.json
 .idea
 .DS_Store
