@@ -59,7 +59,6 @@ const Hero = ({ MenuIcon, CloseIcon, ArrowRight, menuOpen, setMenuOpen, videoLoa
 
           <button className="px-10 py-4 bg-white/20 backdrop-blur-sm border border-white/40 text-white hover:bg-white/30 transition-all duration-500 font-light tracking-wider text-sm uppercase group">
             Explore Our Work
-            <ArrowRight className="inline-block ml-3 group-hover:translate-x-2 transition-transform duration-300" />
           </button>
         </div>
       </div>
